@@ -10,10 +10,10 @@ namespace DelegaterLabb
         {
             List<Company> companies = new List<Company>
             { 
-                new Company {Name = "McDonalds", EmployeeCount = 42 },
-                new Company {Name = "Murder King", EmployeeCount = 23},
-                new Company {Name = "Gym Frossisten", EmployeeCount = 2},
-                new Company {Name = "Dell", EmployeeCount = 1},
+                new Company("McDonalds",  42),
+                new Company ("Murder King",23),
+                new Company ("Gym Frossisten",2),
+                new Company ("Dell", 1),
                 
             };
 
