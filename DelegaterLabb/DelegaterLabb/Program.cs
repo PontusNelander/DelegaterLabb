@@ -1,40 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DelegaterLabb
 {
     class Program
     {
-        static List<Company> companies = new List<Company>
-        {
-            new Company("Bonnier", 467),
-            new Company("Swedbank", 1230),
-            new Company("Abbes Grill", 1),
-            new Company("Arkitektbyrån AB", 15),
-        };
-
         static void Main(string[] args)
         {
+            List<Company> companies = new List<Company>
+            { 
+                new Company {Name = "McDonalds", EmployeeCount = 42 },
+                new Company {Name = "Murder King", EmployeeCount = 23},
+                new Company {Name = "Gym Frossisten", EmployeeCount = 2},
+                new Company {Name = "Dell", EmployeeCount = 1},
+                
+            };
+
             var result = companies.FindAll(HasOverTenEmployees);
-
-            Console.WriteLine("Fler än 10:");
-            foreach (var c in result)
-            {
-                Console.WriteLine($"{c.Name}, {c.EmployeeCount}");
-            }
-
-            Console.WriteLine();
-
             var result2 = companies.FindAll(c => c.EmployeeCount < 2);
 
-            Console.WriteLine("Färre än två:");
-            foreach (var c in result2)
-            {
-                Console.WriteLine($"{c.Name}, {c.EmployeeCount}");
-            }
+            static bool HasOverTenEmployees(Company company) => company.EmployeeCount > 10;
+
+            PrintOutToConsole(result);
+            PrintOutToConsole(result2);
+
+            
+            
+            
         }
 
-        private static bool HasOverTenEmployees(Company c) => c.EmployeeCount > 10;
-        
+        private static void PrintOutToConsole(List<Company> result)
+        {
+            foreach (var company in result)
+            {
+                Console.WriteLine($"Company Name: {company.Name} Employee Count: {company.EmployeeCount}");
+            }
+        }
     }
 }
